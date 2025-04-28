@@ -26,7 +26,7 @@ A simple script to **play and stop white noise** on macOS with a **⌥ + ⌘ + P
 
 ```bash
 cd ~/code
-git clone https://your-repo-link white_noise
+git clone https://github.com/bushuyeu/white-noise-toggle white_noise
 cd white_noise
 ```
 
