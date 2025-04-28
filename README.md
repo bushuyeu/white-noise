@@ -3,6 +3,10 @@
 [![Built with Bash](https://img.shields.io/badge/Built%20with-Bash-4EAA25?logo=gnubash&logoColor=white)](https://www.gnu.org/software/bash/)
 [![Platform: macOS](https://img.shields.io/badge/Platform-macOS-lightgrey?logo=apple&logoColor=white)](https://www.apple.com/macos/)
 
+## Preview
+
+![Play White Noise](./image/opt+cmd+p.png.png)
+
 A simple script to **play and stop white noise** on macOS with a **⌥ + ⌘ + P shortcut**.
 
 ✅ Launch white noise for focus, meditation, or sleep  
