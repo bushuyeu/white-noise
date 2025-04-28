@@ -6,7 +6,7 @@
         "key_code": "p",
         "modifiers": { "mandatory": ["left_option", "left_command"] }
       },
-      "to": [{ "shell_command": "./toggle_white_noise.sh" }], # here you might need to adjust the path to your script
+      "to": [{ "shell_command": "/path/to/the/script.sh" }],
       "type": "basic"
     }
   ]
