@@ -9,16 +9,19 @@ PID_FILE="/tmp/white_noise.pid"
 # Force default audio device (macOS needs this sometimes)
 export AUDIODEV="default"
 
-# If a previous noise process is running, stop it
+# Check if noise file exists
+if [ ! -f "$NOISE_FILE" ]; then
+    osascript -e 'display notification "White noise file not found." with title "White Noise 🎶 Error"'
+    exit 1
+fi
+
 if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
-    kill "$(cat "$PID_FILE")"
-    rm -f "$PID_FILE"
-    osascript -e 'display notification "White noise stopped." with title "White Noise 🎶"'
+    # Stop previous noise
+    kill "$(cat "$PID_FILE")" && rm -f "$PID_FILE"
+    osascript -e 'display notification "⏹️ Stopped " with title "White Noise 🎶"'
 else
-    # Start playing with fade-in
-    "$PLAY_CMD" -q "$NOISE_FILE" \
-        fade t 3 0 \
-        repeat - &
+    # Start playing noise in the background
+    "$PLAY_CMD" -q "$NOISE_FILE" repeat - &
     echo $! > "$PID_FILE"
-    osascript -e 'display notification "White noise started." with title "White Noise 🎶"'
+    osascript -e 'display notification "▶️ Started  " with title "White Noise 🎶"'
 fi

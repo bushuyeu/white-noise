@@ -1,13 +1,32 @@
-{
-  "description": "Toggle White Noise with Play Button",
-  "manipulators": [
-    {
-      "from": {
-        "key_code": "p",
-        "modifiers": { "mandatory": ["left_option", "left_command"] }
-      },
-      "to": [{ "shell_command": "/path/to/the/script.sh" }],
-      "type": "basic"
-    }
-  ]
-}
+#!/bin/bash
+
+# Resolve the directory this script is in
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+NOISE_FILE="$DIR/white_noise.wav"
+PLAY_CMD="/opt/homebrew/bin/play"
+PID_FILE="/tmp/white_noise.pid"
+
+# Force default audio device (macOS needs this sometimes)
+export AUDIODEV="default"
+
+# Check if noise file exists
+if [ ! -f "$NOISE_FILE" ]; then
+    osascript -e 'display notification "White noise file not found." with title "White Noise 🎶 Error"'
+    exit 1
+fi
+
+if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+    # Stop previous noise
+    kill "$(cat "$PID_FILE")"
+    # Wait for the process to terminate
+    while kill -0 "$(cat "$PID_FILE")" 2>/dev/null; do
+        sleep 0.1
+    done
+    rm -f "$PID_FILE"
+    osascript -e 'display notification "White noise stopped." with title "White Noise 🎶"'
+else
+    # Start playing noise in the background
+    "$PLAY_CMD" -q "$NOISE_FILE" repeat - &
+    echo $! > "$PID_FILE"
+    osascript -e 'display notification "White noise started." with title "White Noise 🎶"'
+fi
