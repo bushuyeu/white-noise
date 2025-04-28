@@ -5,7 +5,9 @@
 
 ## Preview
 
-![Play White Noise](./image/opt+cmd+p.png.png)
+![White Noise Toggler Preview](preview.png)
+
+---
 
 A simple script to **play and stop white noise** on macOS with a **⌥ + ⌘ + P shortcut**.
 
