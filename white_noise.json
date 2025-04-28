@@ -1,0 +1,15 @@
+{
+  "description": "Toggle White Noise with Play Button",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "p",
+        "modifiers": { "mandatory": ["left_option", "left_command"] }
+      },
+      "to": [
+        { "shell_command": "/Users/pb/code/white_noise/toggle_white_noise.sh" }
+      ],
+      "type": "basic"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Karabiner build artifacts (if any)
+karabiner.json
+
+# macOS metadata
+Icon
+Desktop DB
+Desktop DF
+
+# Log files
+*.log
+
+# Swap / Temp files
+*.swp
+*.swo
+*.tmp
+
+# System folders
+.idea/
+.vscode/
+*.bak
