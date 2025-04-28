@@ -15,9 +15,9 @@ if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
     rm -f "$PID_FILE"
     osascript -e 'display notification "White noise stopped." with title "White Noise 🎶"'
 else
-    # Start playing with fade-in and fade-out to avoid clicks
+    # Start playing with fade-in
     "$PLAY_CMD" -q "$NOISE_FILE" \
-        fade t 3 0 3 \
+        fade t 3 0 \
         repeat - &
     echo $! > "$PID_FILE"
     osascript -e 'display notification "White noise started." with title "White Noise 🎶"'
